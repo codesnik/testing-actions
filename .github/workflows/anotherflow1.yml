@@ -1,7 +1,7 @@
-name: Flow
+name: Another Flow
 on: [push]
 jobs:
-  job-2:
+  anotherflow-job:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -16,5 +16,5 @@ jobs:
         #     ls ${{ github.workspace }}
       - name: Show an error
         run: |
-          exit 124
+          exit 123
       - run: echo "🍏 This job's status is ${{ job.status }}."
