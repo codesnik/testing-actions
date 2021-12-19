@@ -7,14 +7,18 @@ jobs:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-        # - name: Check out repository code
-        #   uses: actions/checkout@v2
-        # - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-        # - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-        # - name: List files in the repository
-        #   run: |
-        #     ls ${{ github.workspace }}
-      - name: Show an error
+      - run: echo "🔎 The SHA is ${{ github.sha }} and workaspace is ${{ github.workspace }}."
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Show PWD
+        run: pwd
+      - name: List files in the repository
         run: |
-          exit 123
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+          ls -al ${{ github.workspace }}
+      - name: Create REVISION file
+        run: git log --pretty=format:'%h' -n 1 > REVISION
+      - name: List files in the repository
+        run: |
+          ls -al ${{ github.workspace }}
+      - name: Show REVISION file
+        run: cat REVISION
