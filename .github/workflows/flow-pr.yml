@@ -1,5 +1,5 @@
-name: Push Flow
-on: [push]
+name: PR Flow
+on: [pull_request]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -15,10 +15,5 @@ jobs:
       - name: List files in the repository
         run: |
           ls -al ${{ github.workspace }}
-      - name: Create REVISION file
-        run: git log --pretty=format:'%h' -n 1 > REVISION
-      - name: List files in the repository
-        run: |
-          ls -al ${{ github.workspace }}
-      - name: Show REVISION file
-        run: cat REVISION
+      - name: show commits
+        run: git log -n 5 --graph
